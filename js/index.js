@@ -123,7 +123,7 @@ $(function () {
         var canvas = document.getElementById('lodings');
         var ctx = canvas.getContext('2d');
 //range控件信息
-        var rangeValue = 2;
+        var rangeValue = 0;
         var nowRange = 0;   //用于做一个临时的range
 //画布属性
         var mW = canvas.width = 250;
@@ -234,55 +234,22 @@ $(function () {
                             callback: function () {
                                 render();
                                 let loader = new PxLoader()
-                                imgarr.map((v,i) => {
+                                imgarr.map((v, i) => {
                                     var pxImage = new PxLoaderImage(v)
                                     pxImage.imageNumber = i + 1
                                     loader.add(pxImage)
                                 })
-                                loader.addCompletionListener((e)=>{
-                                    console.log(e)
-                                    console.log(e.resource.imageNumber)
+                                loader.addCompletionListener((e) => {
+                                    rangeValue = parseInt((e.completedCount / e.totalCount) * 100);
+                                    if (e.completedCount === imgarr.length) {
+                                        setTimeout(function () {
+                                            $(".loding_box").remove();
+                                            rends = true;
+                                            rool(0);
+                                        }, 1000)
+                                    }
                                 })
                                 loader.start();
-
-                                /*      var totalImg = $('img').length;//图片总数
-                                      console.log(totalImg);
-                                      var currentImg = 0;//加载完图片的指针
-                                      //判断图片是否在本地缓存；
-                                      var imgs = document.getElementsByTagName("img");
-                                      for (var i = 0; i < imgs.length; i++) {
-                                          if (imgs[i].complete) {
-                                              currentImg++;
-                                              rangeValue = parseInt((currentImg / totalImg) * 100);
-                                              if (currentImg === totalImg) {
-                                                  rangeValue = 100;
-                                                  setTimeout(function () {
-                                                      $(".loding_box").remove();
-                                                      rends = true;
-                                                      rool(0);
-                                                  }, 1000)
-
-                                                  console.log("本地缓存了全部图片");
-                                              }
-                                              console.log("本地缓存图片,图片总数减少为:" + totalImg);
-                                          }
-                                      }
-                                      //判断图片的加载速速；
-                                      $('img').on('load', function () {
-                                          currentImg++;
-                                          console.log("图片加载为" + currentImg);
-                                          console.log(currentImg, totalImg);
-                                          rangeValue = parseInt((currentImg / totalImg) * 100);
-                                          if (currentImg === totalImg) {
-                                              rangeValue = 100;
-                                              setTimeout(function () {
-                                                  $(".loding_box").remove();
-                                                  rends = true;
-                                                  rool(0);
-                                              }, 1000)
-                                              console.log("图片加载完了")
-                                          }
-                                      });*/
                             }
                         }
                     });
