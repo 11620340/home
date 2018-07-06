@@ -256,7 +256,7 @@ $(function () {
                 }
             }
         });
-    }()
+    }() 
     $.each($(".pm"), function (i, v) {
         lists.push({
             top: $(v).offset().top,
