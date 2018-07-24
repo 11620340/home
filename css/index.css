@@ -1,3 +1,11 @@
+html, body, li, ul, ol, dl, dd {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: 14px/21px STXihei, 华文细黑, Arial, Helvetica, sans-serif, 'Microsoft YaHei', 微软雅黑;
+}
+
+
 .swiper-container .swiper-slide:nth-child(1) {
   background: #000 !important; }
 
