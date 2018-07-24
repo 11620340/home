@@ -33,6 +33,8 @@ jquery.js
 
 jquery-monsewheel.js
 
+PxLoader  图片预加载
+
 通过一系列的插件等组装出一套比较好看的页面交互效果；
 
 开始的lodings层；是真是存在的；不是虚假的
